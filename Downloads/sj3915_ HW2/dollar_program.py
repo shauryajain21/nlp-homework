@@ -18,28 +18,28 @@ def main():
     
     input_file = sys.argv[1]
     
-    # Main regex pattern for dollar amounts - optimized for better performance
-    # This single comprehensive pattern handles all dollar amount formats
+   
+   
     
     dollar_pattern = r'''
         (?:
-            # Pattern 1: $123.45, $500 million, USD 500, etc.
+   
             (?:(?:US\s*)?\$|USD\s*|(?:US|American|Canadian|Australian)\s+dollars?\s+)\s*
             \d{1,3}(?:,\d{3})*(?:\.\d{1,2})?\s*(?:million|billion|trillion|thousand)?
         |
-            # Pattern 2: 123.45 dollars, 500 million dollars, etc.
+            
             \d{1,3}(?:,\d{3})*(?:\.\d{1,2})?\s*(?:million|billion|trillion|thousand)?\s+
             (?:US\s+)?dollars?(?!\s+and)
         |
-            # Pattern 3: Written amounts like "five hundred dollars"
+            
             (?:one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|thirteen|fourteen|fifteen|sixteen|seventeen|eighteen|nineteen|twenty|thirty|forty|fifty|sixty|seventy|eighty|ninety|hundred|thousand|million|billion|trillion)
             (?:\s+(?:one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|thirteen|fourteen|fifteen|sixteen|seventeen|eighteen|nineteen|twenty|thirty|forty|fifty|sixty|seventy|eighty|ninety|hundred|thousand|million|billion|trillion))*
             \s+(?:US\s+)?dollars?
         |
-            # Pattern 4: Mixed format like "1 dollar and 50 cents"
+            
             \d{1,3}(?:,\d{3})*(?:\.\d{1,2})?\s+(?:US\s+)?dollars?\s+and\s+\d{1,3}(?:,\d{3})*(?:\.\d{1,2})?\s+cents?
         |
-            # Pattern 5: Written format like "one dollar and fifty cents"
+            
             (?:one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|thirteen|fourteen|fifteen|sixteen|seventeen|eighteen|nineteen|twenty|thirty|forty|fifty|sixty|seventy|eighty|ninety|hundred|thousand|million|billion|trillion)
             (?:\s+(?:one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|thirteen|fourteen|fifteen|sixteen|seventeen|eighteen|nineteen|twenty|thirty|forty|fifty|sixty|seventy|eighty|ninety|hundred|thousand|million|billion|trillion))*
             \s+(?:US\s+)?dollars?\s+and\s+
@@ -47,15 +47,15 @@ def main():
             (?:\s+(?:one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|thirteen|fourteen|fifteen|sixteen|seventeen|eighteen|nineteen|twenty|thirty|forty|fifty|sixty|seventy|eighty|ninety|hundred|thousand|million|billion|trillion))*
             \s+cents?
         |
-            # Pattern 6: Cents only
+            
             \d{1,3}(?:,\d{3})*(?:\.\d{1,2})?\s+cents?
         |
-            # Pattern 7: Written cents only
+            
             (?:one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|thirteen|fourteen|fifteen|sixteen|seventeen|eighteen|nineteen|twenty|thirty|forty|fifty|sixty|seventy|eighty|ninety|hundred|thousand|million|billion|trillion)
             (?:\s+(?:one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|thirteen|fourteen|fifteen|sixteen|seventeen|eighteen|nineteen|twenty|thirty|forty|fifty|sixty|seventy|eighty|ninety|hundred|thousand|million|billion|trillion))*
             \s+cents?
         |
-            # Pattern 8: USD at the end
+            
             \d{1,3}(?:,\d{3})*(?:\.\d{1,2})?\s*(?:million|billion|trillion|thousand)?\s+USD
         )
     '''
@@ -80,11 +80,11 @@ def main():
         print(f"Error reading file: {e}")
         sys.exit(1)
     
-    # Write matches to output file
+
     with open('dollar_output.txt', 'w', encoding='utf-8') as output_file:
         for match in matches:
             output_file.write(match + '\n')
-            print(match)  # Also print to stdout
+            print(match)  
 
     print(f"\nFound {len(matches)} dollar amounts. Results saved to dollar_output.txt")
 

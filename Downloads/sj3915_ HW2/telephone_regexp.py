@@ -56,7 +56,7 @@ def main():
                 for match in line_matches:
                     cleaned_match = match.strip()
                     if cleaned_match:
-                        # Basic validation: make sure it's not just zeros or other invalid patterns
+
                         if not re.match(r'^[0\-\.\s\(\)]+$', cleaned_match):
                             matches.append(cleaned_match)
     
